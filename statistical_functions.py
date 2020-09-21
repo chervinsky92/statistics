@@ -33,3 +33,20 @@ def variance(data):
 # from statistics import stdev
 def standard_deviation(data):
     return sqrt(variance(data))
+
+# add a number to an existing mean
+def incremental_mean(oldmean, n, x):
+    sum = oldmean * n
+    return (sum + x) / (n + 1)
+
+# compute the likelihood of observing a sequence of results in a given order
+# dist: dictionary of results and their corresponding probabilities
+# data: string/list of desired sequence
+def likelihood(dist, data):
+    likely = 1.0
+    for item in data:
+        likely *= dist[item]
+    return likely
+
+# print(likelihood({'A':0.2,'B':0.2,'C':0.2,'D':0.2,'E':0.2}, 'ABCEDDECAB'))
+# print(likelihood({'Good':0.6,'Bad':0.2,'Indifferent':0.2}, ['Good','Bad','Indifferent','Good','Good','Bad']))
